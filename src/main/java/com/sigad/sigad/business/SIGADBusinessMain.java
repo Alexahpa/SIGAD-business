@@ -17,17 +17,21 @@ import javafx.scene.Scene;
 import com.sigad.sigad.app.controller.HomeController;
 import com.sigad.sigad.app.controller.LoginController;
 import com.sigad.sigad.insumos.controller.InsumoController;
+import de.felixroske.jfxsupport.AbstractJavaFxApplicationSupport;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 /**
  *
  * @author cfoch
  */
-public class SIGADBusinessMain extends Application{
+@SpringBootApplication
+public class SIGADBusinessMain extends AbstractJavaFxApplicationSupport{
     
     @Override
 	public void start(Stage stage) {
             try {
+                    
                     Parent root = FXMLLoader.load(getClass().getResource(LoginController.viewPath));
                     Scene scene = new Scene(root);
                     //scene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
@@ -39,7 +43,7 @@ public class SIGADBusinessMain extends Application{
 	}
 	
 	public static void main(String[] args) {
-            launch(args);
+            Application.launch(args);
 	}
         
 }

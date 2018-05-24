@@ -9,6 +9,7 @@ import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.sigad.sigad.business.Producto;
 import com.sigad.sigad.pedido.helper.ProductoHelper;
+import com.sigad.sigad.repository.ProductoRepositorio;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -39,6 +40,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
 import javafx.util.Callback;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * FXML Controller class
@@ -46,7 +48,7 @@ import javafx.util.Callback;
  * @author Alexandra
  */
 public class SeleccionarProductosController implements Initializable {
-    
+
     public static final String viewPath = "/com/sigad/sigad/pedido/view/seleccionarProductos.fxml";
     /**
      * Initializes the controller class.
@@ -68,13 +70,15 @@ public class SeleccionarProductosController implements Initializable {
 
     private final ObservableList<ProductoLista> prod = FXCollections.observableArrayList();
 
+    @Autowired
+    private ProductoRepositorio repositorioProducto;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         JFXTreeTableColumn<PedidoLista, Boolean> eliminar = new JFXTreeTableColumn<>("Eliminar");
         eliminar.setPrefWidth(80);
-        eliminar.setCellValueFactory(
-                new Callback<TreeTableColumn.CellDataFeatures<PedidoLista, Boolean>, ObservableValue<Boolean>>() {
+        eliminar.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PedidoLista, Boolean>, ObservableValue<Boolean>>() {
 
             @Override
             public ObservableValue<Boolean> call(TreeTableColumn.CellDataFeatures<PedidoLista, Boolean> p) {
@@ -145,11 +149,10 @@ public class SeleccionarProductosController implements Initializable {
         JFXTreeTableColumn<PedidoLista, String> subTotalPedido = new JFXTreeTableColumn<>("SubTotal");
         subTotalPedido.setPrefWidth(80);
         subTotalPedido.setCellValueFactory((TreeTableColumn.CellDataFeatures<PedidoLista, String> param) -> param.getValue().getValue().subtotal);
-        
+
         JFXTreeTableColumn<PedidoLista, String> descuentos = new JFXTreeTableColumn<>("Descuentos");
         subTotalPedido.setPrefWidth(80);
         subTotalPedido.setCellValueFactory((TreeTableColumn.CellDataFeatures<PedidoLista, String> param) -> param.getValue().getValue().descuento);
-
 
         JFXTreeTableColumn<ProductoLista, Boolean> select = new JFXTreeTableColumn<>("Seleccionar");
         select.setPrefWidth(80);
@@ -201,15 +204,19 @@ public class SeleccionarProductosController implements Initializable {
         almacen.setPrefWidth(120);
         almacen.setCellValueFactory((TreeTableColumn.CellDataFeatures<ProductoLista, String> param) -> param.getValue().getValue().almacen);
 
-        //Basede datos
-        ProductoHelper gest = new ProductoHelper();
-        ArrayList<Producto> productosDB = gest.getProducts();
-        productosDB.forEach((p) -> {
-            Producto t = (Producto) p;
+        //Base de datos
+        //ProductoHelper gest = new ProductoHelper();
+//        ArrayList<Producto> productosDB = gest.getProducts();
+//        productosDB.forEach((p) -> {
+//            Producto t = (Producto) p;
+//            System.out.println(t.getPrecio());
+//            prod.add(new ProductoLista(t.getNombre(), t.getPrecio().toString(), Integer.toString(t.getStock()), "", "", t.getImagen(), t.getId().intValue()));
+//        });
+//        gest.close();
+        repositorioProducto.findAll().forEach((t) -> {
             System.out.println(t.getPrecio());
             prod.add(new ProductoLista(t.getNombre(), t.getPrecio().toString(), Integer.toString(t.getStock()), "", "", t.getImagen(), t.getId().intValue()));
         });
-        gest.close();
 
         final TreeItem<ProductoLista> root = new RecursiveTreeItem<>(prod, RecursiveTreeObject::getChildren);
 
