@@ -8,7 +8,7 @@ package com.sigad.sigad.pedido.controller;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.sigad.sigad.business.Producto;
-import com.sigad.sigad.pedido.helper.ProductoHelper;
+import com.sigad.sigad.service.ProductoService;
 import com.sigad.sigad.repository.ProductoRepositorio;
 import java.net.URL;
 import java.util.ArrayList;
@@ -41,12 +41,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
 import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 /**
  * FXML Controller class
  *
  * @author Alexandra
  */
+@Controller
 public class SeleccionarProductosController implements Initializable {
 
     public static final String viewPath = "/com/sigad/sigad/pedido/view/seleccionarProductos.fxml";
@@ -69,9 +73,11 @@ public class SeleccionarProductosController implements Initializable {
     private final ObservableList<PedidoLista> pedidos = FXCollections.observableArrayList();
 
     private final ObservableList<ProductoLista> prod = FXCollections.observableArrayList();
+    @Autowired
+    private ProductoService productoService;
 
     @Autowired
-    private ProductoRepositorio repositorioProducto;
+    private ApplicationContext context;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -92,7 +98,7 @@ public class SeleccionarProductosController implements Initializable {
             public TreeTableCell<PedidoLista, Boolean> call(TreeTableColumn<PedidoLista, Boolean> p) {
                 return new ButtonCell();
             }
-
+            
         });
 //        eliminar.setCellFactory(new Callback<TreeTableColumn<PedidoLista, Image>, TreeTableCell<PedidoLista, Image>>() {
 //            @Override
@@ -205,7 +211,7 @@ public class SeleccionarProductosController implements Initializable {
         almacen.setCellValueFactory((TreeTableColumn.CellDataFeatures<ProductoLista, String> param) -> param.getValue().getValue().almacen);
 
         //Base de datos
-        //ProductoHelper gest = new ProductoHelper();
+        //ProductoHelper gest = new ProductoService();
 //        ArrayList<Producto> productosDB = gest.getProducts();
 //        productosDB.forEach((p) -> {
 //            Producto t = (Producto) p;
@@ -213,7 +219,7 @@ public class SeleccionarProductosController implements Initializable {
 //            prod.add(new ProductoLista(t.getNombre(), t.getPrecio().toString(), Integer.toString(t.getStock()), "", "", t.getImagen(), t.getId().intValue()));
 //        });
 //        gest.close();
-        repositorioProducto.findAll().forEach((t) -> {
+        productoService.findAllProducto().forEach((t) -> {
             System.out.println(t.getPrecio());
             prod.add(new ProductoLista(t.getNombre(), t.getPrecio().toString(), Integer.toString(t.getStock()), "", "", t.getImagen(), t.getId().intValue()));
         });

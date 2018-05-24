@@ -14,11 +14,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author jorgeespinoza
  */
+@Table(name="producto")
 @Entity
 public class Producto {
     @Id

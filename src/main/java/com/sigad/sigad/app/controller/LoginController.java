@@ -52,25 +52,25 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Create admin if not exist
-        serviceInit();
-        Session session;
-        session = sessionFactory.openSession();
-        
-        Query query  = session.createQuery("from Perfil p where p.nombre='Administrator'");
-        int count = query.list().size();
-        if(count == 0){
-            System.out.println("Primer inicio de sesión");
-            Transaction tx = session.beginTransaction();
-            Perfil adminProfile = new Perfil("Administrator", "Super user", true);
-            Usuario user = new Usuario("Juan", "Tonos", "Tonos", adminProfile,
-                    "123456789", "71067346", "943821232", true,
-                    "admin@asigad.net", "admin", "");
-            session.save(adminProfile);
-            session.save(user);
-            tx.commit();
-        }
-        
-        session.close();
+//        serviceInit();
+//        Session session;
+//        session = sessionFactory.openSession();
+//        
+//        Query query  = session.createQuery("from Perfil p where p.nombre='Administrator'");
+//        int count = query.list().size();
+//        if(count == 0){
+//            System.out.println("Primer inicio de sesión");
+//            Transaction tx = session.beginTransaction();
+//            Perfil adminProfile = new Perfil("Administrator", "Super user", true);
+//            Usuario user = new Usuario("Juan", "Tonos", "Tonos", adminProfile,
+//                    "123456789", "71067346", "943821232", true,
+//                    "admin@asigad.net", "admin", "");
+//            session.save(adminProfile);
+//            session.save(user);
+//            tx.commit();
+//        }
+//        
+//        session.close();
     }    
 
     @FXML

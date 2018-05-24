@@ -14,36 +14,33 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import com.sigad.sigad.app.controller.HomeController;
 import com.sigad.sigad.app.controller.LoginController;
-import com.sigad.sigad.insumos.controller.InsumoController;
 import de.felixroske.jfxsupport.AbstractJavaFxApplicationSupport;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 
 /**
  *
  * @author cfoch
  */
 @SpringBootApplication
-public class SIGADBusinessMain extends AbstractJavaFxApplicationSupport{
-    
+public class SIGADBusinessMain extends AbstractJavaFxApplicationSupport {
+
     @Override
-	public void start(Stage stage) {
-            try {
-                    
-                    Parent root = FXMLLoader.load(getClass().getResource(LoginController.viewPath));
-                    Scene scene = new Scene(root);
-                    //scene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
-                    stage.setScene(scene);
-                    stage.show();
-            } catch(Exception e) {
-                    e.printStackTrace();
-            }
-	}
-	
-	public static void main(String[] args) {
-            Application.launch(args);
-	}
-        
+    public void start(Stage stage) {
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource(LoginController.viewPath));
+            Scene scene = new Scene(root);
+            //scene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
+
 }
