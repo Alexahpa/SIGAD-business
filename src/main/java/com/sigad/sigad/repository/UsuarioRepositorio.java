@@ -5,7 +5,7 @@
  */
 package com.sigad.sigad.repository;
 
-import com.sigad.sigad.business.Usuario;
+import com.sigad.sigad.models.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

@@ -30,6 +30,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 
 /**
  * FXML Controller class
@@ -61,6 +63,8 @@ public class HomeController implements Initializable {
     private AnchorPane menuPanel;
     @FXML
     private JFXPopup popup;
+    @Autowired
+    private ApplicationContext context;
     
     private Color mainColor = new Color(0.27, 0.31, 0.42, 1);
     private double  baseTop = 80.0;
@@ -102,7 +106,11 @@ public class HomeController implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     Node node;
-                    node = (Node) FXMLLoader.load(HomeController.this.getClass().getResource(SeleccionarProductosController.viewPath));
+                    
+                    //node = (Node) FXMLLoader.load(HomeController.this.getClass().getResource(SeleccionarProductosController.viewPath));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(SeleccionarProductosController.viewPath));
+                    fxmlLoader.setControllerFactory(context::getBean);
+                    node = (Node) fxmlLoader.load();
                     firstPanel.getChildren().setAll(node);
                 }catch (IOException ex) {
                     Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "", ex);

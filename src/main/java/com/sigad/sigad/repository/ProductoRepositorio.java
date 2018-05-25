@@ -6,11 +6,13 @@
 package com.sigad.sigad.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.sigad.sigad.business.Producto;
+import com.sigad.sigad.models.Producto;
+import org.springframework.stereotype.Repository;
 /**
  *
  * @author Alexandra
  */
+@Repository
 public interface ProductoRepositorio extends JpaRepository<Producto , Long>{
      
 }

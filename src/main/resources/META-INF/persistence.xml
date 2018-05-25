@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.sigad_SIGAD-business_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>com.sigad.sigad.business.Vehiculo.Tipo</class>
+    <class>com.sigad.sigad.models.ComboPromocion</class>
+    <class>com.sigad.sigad.models.ProductoFragilidad</class>
+    <class>com.sigad.sigad.models.Reparto</class>
+    <class>com.sigad.sigad.models.ProductoInsumo</class>
+    <class>com.sigad.sigad.models.DetalleOrdenCompra</class>
+    <class>com.sigad.sigad.models.TipoPago</class>
+    <class>com.sigad.sigad.models.Tienda</class>
+    <class>com.sigad.sigad.models.Proveedor</class>
+    <class>com.sigad.sigad.models.Insumo</class>
+    <class>com.sigad.sigad.models.Perfil</class>
+    <class>com.sigad.sigad.models.MovimientosTienda</class>
+    <class>com.sigad.sigad.models.PedidoEstado</class>
+    <class>com.sigad.sigad.models.ClienteDireccion</class>
+    <class>com.sigad.sigad.models.Vehiculo</class>
+    <class>com.sigad.sigad.models.CapacidadTienda</class>
+    <class>com.sigad.sigad.models.EstadoPedido</class>
+    <class>com.sigad.sigad.models.Constante</class>
+    <class>com.sigad.sigad.models.Permiso</class>
+    <class>com.sigad.sigad.models.LoteTienda</class>
+    <class>com.sigad.sigad.models.Producto</class>
+    <class>com.sigad.sigad.models.ProductoDescuento</class>
+    <class>com.sigad.sigad.models.TipoMovimiento</class>
+    <class>com.sigad.sigad.models.ProductosCombos</class>
+    <class>com.sigad.sigad.models.Usuario</class>
+    <class>com.sigad.sigad.models.OrdenCompra</class>
+    <class>com.sigad.sigad.models.ClienteFecha</class>
+    <class>com.sigad.sigad.models.Locacion</class>
+    <class>com.sigad.sigad.models.DetalleReparto</class>
+    <class>com.sigad.sigad.models.LoteInsumo</class>
+    <class>com.sigad.sigad.models.ProductoCategoria</class>
+    <class>com.sigad.sigad.models.DetallePedido</class>
+    <class>com.sigad.sigad.models.Pedido</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/sigadtestdb"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
+</persistence>

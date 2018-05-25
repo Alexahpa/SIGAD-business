@@ -7,7 +7,7 @@ package com.sigad.sigad.pedido.controller;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import com.sigad.sigad.business.Producto;
+import com.sigad.sigad.models.Producto;
 import com.sigad.sigad.service.ProductoService;
 import com.sigad.sigad.repository.ProductoRepositorio;
 import java.net.URL;
@@ -50,7 +50,7 @@ import org.springframework.stereotype.Controller;
  *
  * @author Alexandra
  */
-@Controller
+@Component
 public class SeleccionarProductosController implements Initializable {
 
     public static final String viewPath = "/com/sigad/sigad/pedido/view/seleccionarProductos.fxml";

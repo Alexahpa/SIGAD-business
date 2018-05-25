@@ -6,7 +6,7 @@
 package com.sigad.sigad.service;
 
 import com.sigad.sigad.app.controller.LoginController;
-import com.sigad.sigad.business.Producto;
+import com.sigad.sigad.models.Producto;
 import com.sigad.sigad.repository.ProductoRepositorio;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductoService {
 
-    
     private ProductoRepositorio repositorioProducto;
     Session session = null;
     @Autowired
